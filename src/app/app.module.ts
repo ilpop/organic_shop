@@ -7,11 +7,13 @@ import { AppComponent } from './app.component';
 
 import { provideFirebaseApp, getApp, initializeApp } from '@angular/fire/app';
 import { getFirestore, provideFirestore } from '@angular/fire/firestore';
+import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BsNavbarComponent
   ],
   imports: [
     BrowserModule,
