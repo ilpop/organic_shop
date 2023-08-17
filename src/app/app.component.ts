@@ -9,11 +9,4 @@ import { Observable } from 'rxjs';
 })
 export class AppComponent {
   title = 'oshop';
-  firestore: Firestore = inject(Firestore);
-  items$: Observable<any[]> | undefined;
-
-  constructor() {
-    const aCollection = collection(this.firestore, 'items')
-    this.items$ = collectionData(aCollection);
-  }
 }
