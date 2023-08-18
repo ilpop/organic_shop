@@ -6,17 +6,15 @@ import { Observable } from 'rxjs';
   selector: '/',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
-
   
 })
 
-
 export class HomeComponent {
-  firestore: Firestore = inject(Firestore);
+ // firestore: Firestore = inject(Firestore);
   items$: Observable<any[]> | undefined;
   constructor() {
-    const aCollection = collection(this.firestore, 'items')
-    this.items$ = collectionData(aCollection);
+    //const aCollection = collection(this.firestore, 'items')
+    //this.items$ = collectionData(aCollection);
   }
 
 }
