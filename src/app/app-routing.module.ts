@@ -9,6 +9,9 @@ import { AdminProductsComponent } from './admin/admin-products/admin-products.co
 import { LoginComponent } from './login/login.component';
 import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { RegisterComponent } from './register/register.component';
+import { ProtectedComponent } from './protected/protected.component';
+import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 
 const routes: Routes = [   
   { path: '', component: HomeComponent },
@@ -20,6 +23,11 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'admin/products', component: AdminProductsComponent },
   { path: 'admin/orders', component: AdminOrdersComponent },
+
+  { path: 'register', component: RegisterComponent },
+  { path: 'protected', component: ProtectedComponent, canActivate: [AngularFireAuthGuard] },
+  
+  
 ];
 
 @NgModule({
