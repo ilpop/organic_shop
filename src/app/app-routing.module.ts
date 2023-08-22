@@ -11,20 +11,24 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { RegisterComponent } from './register/register.component';
 import { ProtectedComponent } from './protected/protected.component';
-import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
+import { AngularFireAuthGuard, canActivate } from '@angular/fire/compat/auth-guard';
+import { AuthGuard } from './auth-guard.service';
 
 const routes: Routes = [   
+  { path: 'register', component: RegisterComponent },
+  { path: 'login', component: LoginComponent },
   { path: '', component: HomeComponent },
   { path: 'products', component: ProductsComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
-  { path: 'check-out', component: CheckOutComponent },
-  { path: 'order-success', component: OrderSuccessComponent },
-  { path: 'my/orders', component: MyOrdersComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'admin/products', component: AdminProductsComponent },
-  { path: 'admin/orders', component: AdminOrdersComponent },
 
-  { path: 'register', component: RegisterComponent },
+
+  { path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+  { path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard] },
+
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard] },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard] },
+
   { path: 'protected', component: ProtectedComponent, canActivate: [AngularFireAuthGuard] },
   
   
