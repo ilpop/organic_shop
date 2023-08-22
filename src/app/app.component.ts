@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
-import { Firestore, collection, collectionData } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from './auth-service.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +8,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'oshop';
+  constructor(private auth: AuthService, router: Router) {
+    auth.user.subscribe(user => {
+      if(user) {
+        let returnUrl = localStorage.getItem('returnUrl');
+        router.navigateByUrl(returnUrl);
+      }
+    });
+  }
 }

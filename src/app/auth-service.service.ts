@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private auth: AngularFireAuth, private snackBar: MatSnackBar) {}
+  constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private snackBar: MatSnackBar) {}
 
   async register(email: string, password: string) {
     try {
@@ -21,6 +22,9 @@ export class AuthService {
 
   async login(email: string, password: string) {
     try {
+      let returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
+      localStorage.setItem('returnUrl', returnUrl);
+      
       await this.auth.signInWithEmailAndPassword(email, password);
       this.showSnackBar('Login successful');
     } catch (error) {
