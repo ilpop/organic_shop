@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "oshop-ec4f0"
+  },
+  "targets": {
+    "oshop-ec4f0": {
+      "hosting": {
+        "oshop": [
+          "oshop-ec4f0"
+        ]
+      }
+    }
   }
 }

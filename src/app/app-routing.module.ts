@@ -13,6 +13,7 @@ import { RegisterComponent } from './register/register.component';
 import { ProtectedComponent } from './protected/protected.component';
 import { AngularFireAuthGuard, canActivate } from '@angular/fire/compat/auth-guard';
 import { AuthGuard } from './auth-guard.service';
+import { ProductFormComponent } from './admin/product-form/product-form.component';
 
 const routes: Routes = [   
   { path: 'register', component: RegisterComponent },
@@ -28,6 +29,7 @@ const routes: Routes = [
 
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [AuthGuard] },
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard] },
+  { path: 'admin/products/new', component: ProductFormComponent, canActivate: [AuthGuard]},
 
   { path: 'protected', component: ProtectedComponent, canActivate: [AngularFireAuthGuard] },
   
