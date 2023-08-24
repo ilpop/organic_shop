@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFireDatabase } from '@angular/fire/compat/database';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Firestore } from '@angular/fire/firestore';
-import { Observable, map } from 'rxjs';
+import { Firestore, collection, collectionData } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 
-
-
+@Injectable({
+  providedIn: 'root'
+})
 export class CategoryService {
+  constructor(private firestore: Firestore) { }
 
-  constructor(private firestore: AngularFirestore) { }
-
-  getCategories(){
-
+  getCategories(): Observable<any[]> {
+    const categoriesCollection = collection(this.firestore, 'categories');
+    return collectionData(categoriesCollection);
   }
 }
+
