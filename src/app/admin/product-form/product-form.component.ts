@@ -1,6 +1,7 @@
 // product-form.component.ts
 
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { ProductFormService } from 'src/app/product-form.service'
 
 @Component({
@@ -8,8 +9,14 @@ import { ProductFormService } from 'src/app/product-form.service'
   templateUrl: './product-form.component.html',
   styleUrls: ['./product-form.component.css']
 })
-export class ProductFormComponent {
+export class ProductFormComponent implements OnInit{
+  productForm: FormGroup;
+  
   constructor(public productFormService: ProductFormService) {}
+
+  ngOnInit() {
+    this.productForm = this.productFormService.productForm;
+  }
 
   save() {
     this.productFormService.saveProduct();

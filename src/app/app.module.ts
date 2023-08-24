@@ -38,7 +38,6 @@ import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ProductService } from './product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     AppComponent,
