@@ -1,41 +1,34 @@
-<p>product-form works!</p>
-
-<div class="form-group">
-    <label for="category">Category</label>
-    <select id="category" class="form-control" >
-      <option value=""></option>
-      <option *ngFor="let c of categories$ | async">
-        {{ c.name }}
-      </option>
-    </select>
-  </div>
-  
-
-
-<form>
+<form #f="ngForm" (ngSubmit)="save(f.value)">
     <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="title">Title</span>
+          <span class="input-group-text fixed-width" id="title">Title</span>
         </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <input ngModel name="title" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
       </div>
     <div class="input-group mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text">$</span>
+          <span class="input-group-text fixed-width">$</span>
         </div>
-        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+        <input ngModel name="price" type="number" id="price" class="form-control currency-input" step="0.10" aria-label="Amount (to the nearest dollar)">
         <div class="input-group-append">
-          <span class="input-group-text">.00</span>
         </div>
       </div>
-
+      <div class="input-group mb-3">
+        <span class="input-group-text fixed-width">Category</span>
+        <select ngModel name="category" id="category" class="form-control" >
+          <option value=" "></option>
+          <option *ngFor="let c of categories$ | async">
+            {{ c.name }}
+          </option>
+        </select>
+      </div>
       
 
       <div class="input-group input-group-sm mb-3">
         <div class="input-group-prepend">
-          <span class="input-group-text" id="imageUrl">Image URL</span>
+          <span class="input-group-text fixed-width" id="imageUrl">Image URL</span>
         </div>
-        <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
+        <input ngModel name="imageUrl" type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm">
       </div>
     <button class="btn btn-primary">Save</button>
 </form>
