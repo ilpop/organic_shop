@@ -120,11 +120,11 @@
   <div class="col-md-6">
     <div class="card" style="width: 18rem">
       <div class="card-body">
-        <h5 class="card-title">{{ productForm.controls.title.value }}</h5>
-        <p class="card-text">Category: {{ productForm.controls.category.value }}</p>
-        <p class="card-text">Price: €{{ productForm.controls.price.value | number:'1.2-2' }}</p>
-        <img [src]="productForm.controls.imageUrl.value" class="card-img-top" alt="Product Image">
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <img [src]="productForm.controls.imageUrl.value" class="card-img-top">
+        <h2 class="card-title">{{ productForm.controls.title.value }}</h2>
+        <p class="card-text">{{ productForm.controls.category.value }}</p>
+        <p class="card-text">{{ productForm.controls.price.value | currency:'EUR':true }}</p>
+        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
       </div>
     </div>
   </div>
