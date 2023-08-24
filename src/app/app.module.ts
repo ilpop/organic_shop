@@ -6,8 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
-import { AngularFireStorageModule } from '@angular/fire/compat/storage';
-import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
@@ -27,20 +25,17 @@ import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { AuthService } from './auth-service.service';
 
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user.service';
 import { ProductFormComponent } from './admin/product-form/product-form.component';
-import { CategoryService } from './category.service';
-import { Firestore, provideFirestore,getFirestore } from '@angular/fire/firestore';
+import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ProductService } from './product.service';
-
 import { ReactiveFormsModule } from '@angular/forms';
 
 
