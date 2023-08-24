@@ -11,3 +11,10 @@
     text-align: right;
     padding-right: 30px; /* Adjust to leave space for the dot and decimals */
 }
+
+.input-group {
+    position: relative;
+    margin-top: 20px;
+    border-collapse: separate;
+
+}
