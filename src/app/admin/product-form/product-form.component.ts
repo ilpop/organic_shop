@@ -1,3 +1,4 @@
+import { initializeApp } from '@angular/fire/app';
 // product-form.component.ts
 
 import { Component, OnInit } from '@angular/core';
@@ -20,23 +21,36 @@ export class ProductFormComponent implements OnInit{
     private router: Router,
     private route: ActivatedRoute,
     public productFormService: ProductFormService,
+    private productService: ProductService
     ) {
 
  
+      
   }
-
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
       this.productId = productId || null;
+      
+      if (this.productId) {
+        // Load product information and populate the form
+        this.productService.get(this.productId).then(product => {
+          if (product) {
+            this.productFormService.initializeProductForm(product);
+          }
+        });
+      } else {
+        this.productFormService.initializeProductForm(null);
+      }
+      
       this.productForm = this.productFormService.productForm;
     });
-
   }
-
 
   save() {
     this.productFormService.saveProduct();
     this.router.navigate(['/admin/products']);
   }
+
 }
+

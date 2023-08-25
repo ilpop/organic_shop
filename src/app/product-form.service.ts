@@ -30,6 +30,8 @@ export class ProductFormService {
     console.log(this.categories$);
   }
 
+
+
   async saveProduct() {
     if (this.productForm.valid) {
       try {
@@ -40,5 +42,15 @@ export class ProductFormService {
         this.errorMessage$.next('Error saving product. Please try again.');
       }
     }
+    
+  }
+
+  initializeProductForm(product: any | null): void {
+    this.productForm = this.fb.group({
+      title: [product ? product.title : '', Validators.required],
+      price: [product ? product.price : '', [Validators.required, Validators.min(0)]],
+      category: [product ? product.category : '', Validators.required],
+      imageUrl: [product ? product.imageUrl : '', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
+    })
   }
 }
