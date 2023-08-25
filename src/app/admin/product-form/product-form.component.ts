@@ -37,10 +37,12 @@ export class ProductFormComponent implements OnInit{
         this.productService.get(this.productId).then(product => {
           if (product) {
             this.productFormService.initializeProductForm(product);
+            this.productForm = this.productFormService.productForm; 
           }
         });
       } else {
         this.productFormService.initializeProductForm(null);
+        this.productForm = this.productFormService.productForm; 
       }
       
       this.productForm = this.productFormService.productForm;
