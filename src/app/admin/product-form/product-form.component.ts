@@ -6,6 +6,7 @@ import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductFormService } from 'src/app/product-form.service'
 import { ProductService } from 'src/app/product.service';
+import { Observable, subscribeOn } from 'rxjs';
 
 @Component({
   selector: 'app-product-form',
@@ -15,7 +16,8 @@ import { ProductService } from 'src/app/product.service';
 export class ProductFormComponent implements OnInit{
   productForm: FormGroup;
   productId: string ;
-  categories$ = this.productFormService.categories$;
+  categories$: Observable<any[]>;
+  //categories$ = this.productFormService.categories$;
   
   constructor(
     private router: Router,
@@ -23,35 +25,33 @@ export class ProductFormComponent implements OnInit{
     public productFormService: ProductFormService,
     private productService: ProductService
     ) {
-
- 
       
   }
-  ngOnInit() {
+  async ngOnInit() {
+    const categories = await this.productFormService.getCategories();
+    this.categories$ = categories; // Update the categories list
+
+    this.productFormService.initializeProductForm(null); // Initialize with default values
+    this.productForm = this.productFormService.productForm;
+  
     this.route.paramMap.subscribe(params => {
       const productId = params.get('id');
       this.productId = productId || null;
-      
+  
       if (this.productId) {
-        // Load product information and populate the form
         this.productService.get(this.productId).then(product => {
           if (product) {
             this.productFormService.initializeProductForm(product);
-            this.productForm = this.productFormService.productForm; 
+            this.productForm.setValue(this.productFormService.productForm.value);
           }
         });
-      } else {
-        this.productFormService.initializeProductForm(null);
-        this.productForm = this.productFormService.productForm; 
       }
-      
-      this.productForm = this.productFormService.productForm;
     });
   }
 
   save() {
     this.productFormService.saveProduct();
-    this.router.navigate(['/admin/products']);
+    //this.router.navigate(['/admin/products']);
   }
 
 }

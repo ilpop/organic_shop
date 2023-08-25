@@ -30,7 +30,9 @@ export class ProductFormService {
     console.log(this.categories$);
   }
 
-
+  getCategories(): Observable<any[]> {
+    return this.firestore.collection('/categories').valueChanges();
+  }
 
   async saveProduct() {
     if (this.productForm.valid) {
@@ -38,6 +40,9 @@ export class ProductFormService {
         await this.productService.saveProduct(this.productForm.value);
         this.successMessage$.next('Product saved successfully!');
         this.productForm.reset();
+        setTimeout(() => {
+          this.successMessage$.next(null); // Reset the success message after a delay
+        }, 2000);
       } catch (error) {
         this.errorMessage$.next('Error saving product. Please try again.');
       }
@@ -46,11 +51,12 @@ export class ProductFormService {
   }
 
   initializeProductForm(product: any | null): void {
-    this.productForm = this.fb.group({
-      title: [product ? product.title : '', Validators.required],
-      price: [product ? product.price : '', [Validators.required, Validators.min(0)]],
-      category: [product ? product.category : '', Validators.required],
-      imageUrl: [product ? product.imageUrl : '', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
-    })
+    this.productForm.setValue({
+      title: product ? product.title : '',
+      price: product ? product.price : '',
+      category: product ? product.category : '',
+      imageUrl: product ? product.imageUrl : ''
+    });
   }
+
 }
