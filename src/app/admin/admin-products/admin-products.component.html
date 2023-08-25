@@ -1,1 +1,25 @@
-<a routerLink="/admin/products/new" class="btn btn-primary">New product</a>
+<p>
+    <a routerLink="/admin/products/new" class="btn btn-primary">New product</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th>key</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let p of products$ | async">
+            <td><img [src]="p.imageUrl" alt="Product Image" width="50"></td>
+            <td>{{ p.title }}</td>
+            <td>{{ p.price}}</td>
+            <td>{{ p.productId }}</td>
+            <td>
+                <a routerLink="'{{ p.productId }}">Edit </a>  
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -27,6 +27,7 @@ export class ProductFormService {
       imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
     });
     this.categories$ = this.firestore.collection('/categories').valueChanges();
+    console.log(this.categories$);
   }
 
   async saveProduct() {
