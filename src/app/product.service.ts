@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Firestore, collection, addDoc, collectionData, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, addDoc, collectionData, doc, getDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -7,7 +7,6 @@ import { Observable } from 'rxjs';
 })
 export class ProductService {
   constructor(private firestore: Firestore) { }
-  products;
 
   async saveProduct(product: any) {
     try {
@@ -37,6 +36,27 @@ export class ProductService {
     } catch (error) {
       console.error('Error getting product:', error);
       return undefined;
+    }
+  }
+
+
+  async updateProduct(productId: string, updatedProduct: any) {
+    try {
+      const productDocRef = doc(this.firestore, 'products', productId);
+      await updateDoc(productDocRef, updatedProduct);
+      console.log('Product updated successfully:', updatedProduct);
+    } catch (error) {
+      console.error('Error updating product:', error);
+    }
+  }
+
+  async deleteProduct(productId: string) {
+    try {
+      const productDocRef = doc(this.firestore, 'products', productId);
+      await deleteDoc(productDocRef);
+      console.log(`Product with ID ${productId} deleted successfully.`);
+    } catch (error) {
+      console.error('Error deleting product:', error);
     }
   }
 }

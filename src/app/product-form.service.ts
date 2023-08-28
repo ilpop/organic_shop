@@ -14,18 +14,23 @@ export class ProductFormService {
   categories$: Observable<any[]>;
   successMessage$ = new BehaviorSubject<string | null>(null);
   errorMessage$ = new BehaviorSubject<string | null>(null);
-
+  productId;
+  
   constructor(
+
     private fb: FormBuilder, 
     private productService: ProductService,
     private firestore: AngularFirestore) {
     
       this.productForm = this.fb.group({
+
       title: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       category: ['', Validators.required],
       imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
+    
     });
+
     this.categories$ = this.firestore.collection('/categories').valueChanges();
     console.log(this.categories$);
   }
@@ -34,11 +39,22 @@ export class ProductFormService {
     return this.firestore.collection('/categories').valueChanges();
   }
 
-  async saveProduct() {
+  async saveProduct(productId: string | null) {
     if (this.productForm.valid) {
       try {
-        await this.productService.saveProduct(this.productForm.value);
-        this.successMessage$.next('Product saved successfully!');
+        const productData = this.productForm.value;
+        console.log('productId in save method:', this.productId);
+        console.log('productId in save method:', productId); // Check if productId is obtained correctly
+        if (productId) {
+          // If productId exists, it means we are updating an existing product
+          await this.productService.updateProduct(productId, productData);
+          this.successMessage$.next('Product updated successfully!');
+        } else {
+          // Otherwise, we are creating a new product
+          await this.productService.saveProduct(productData);
+          this.successMessage$.next('Product saved successfully!');
+        }
+  
         this.productForm.reset();
         setTimeout(() => {
           this.successMessage$.next(null); // Reset the success message after a delay
@@ -47,10 +63,10 @@ export class ProductFormService {
         this.errorMessage$.next('Error saving product. Please try again.');
       }
     }
-    
   }
 
   initializeProductForm(product: any | null): void {
+
     this.productForm.setValue({
       title: product ? product.title : '',
       price: product ? product.price : '',
