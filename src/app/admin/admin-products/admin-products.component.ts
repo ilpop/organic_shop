@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
+import { Data } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/product.service';
@@ -14,6 +15,7 @@ export class AdminProductsComponent implements OnInit, OnDestroy {
   products: Product[];
   filteredProducts: any[];
   subscription: Subscription;
+
 
   constructor(private productService: ProductService) {
     this.subscription = this.productService.getAll()

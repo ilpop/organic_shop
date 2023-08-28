@@ -5,8 +5,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AngularFireModule } from '@angular/fire/compat';
-import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
-
 import { BsNavbarComponent } from './bs-navbar/bs-navbar.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
@@ -24,8 +22,9 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireAuthGuard } from '@angular/fire/compat/auth-guard';
 import { AuthService } from './auth-service.service';
 
+import { MatTableModule } from '@angular/material/table';
 import {MatSnackBarModule} from '@angular/material/snack-bar'; 
-
+import { AngularMaterialModule } from './angular-material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { UserService } from './user.service';
@@ -40,6 +39,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
+  
     AppComponent,
     BsNavbarComponent,
     HomeComponent,
@@ -54,6 +54,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     ProtectedComponent,
     ProductFormComponent,
+   
   ],
   imports: [
     BrowserModule,
@@ -69,7 +70,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     provideAuth(() => getAuth()),
     provideDatabase(() => getDatabase()),
     provideFirestore(() => getFirestore()),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatTableModule
+
   ],
   providers: [
     AngularFireAuthGuard, 
