@@ -1,6 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnDestroy, OnInit, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
 import { Observable, Subscription } from 'rxjs';
+import { Product } from 'src/app/models/product';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { ProductService } from 'src/app/product.service';
   templateUrl: './admin-products.component.html',
   styleUrls: ['./admin-products.component.css']
 })
-export class AdminProductsComponent implements OnInit {
-  firestore: Firestore = inject(Firestore);
-  products: {title: string}[];
+export class AdminProductsComponent implements OnInit, OnDestroy {
+  //firestore: Firestore = inject(Firestore);
+  products: Product[];
   filteredProducts: any[];
   subscription: Subscription;
 
