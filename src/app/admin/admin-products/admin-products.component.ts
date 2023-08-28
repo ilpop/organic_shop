@@ -1,6 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Firestore } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { ProductService } from 'src/app/product.service';
 
 @Component({
@@ -10,14 +10,30 @@ import { ProductService } from 'src/app/product.service';
 })
 export class AdminProductsComponent implements OnInit {
   firestore: Firestore = inject(Firestore);
-  products$;
+  products: {title: string}[];
+  filteredProducts: any[];
+  subscription: Subscription;
 
   constructor(private productService: ProductService) {
-    this.products$ = this.productService.getAll(); 
+    this.subscription = this.productService.getAll()
+    .subscribe(products => this.filteredProducts = this.products = products); 
 
+  }
+
+  filter(query: string) {
+   this.filteredProducts = (query) ?
+    this.products.filter(p => p.title.toLowerCase().includes(query.toLowerCase())) :    
+    this.products;
+    
   }
 
   ngOnInit() {
+  
   }
+
+  ngOnDestroy() { 
+    this.subscription.unsubscribe();
+
+}
 
 }
