@@ -117,7 +117,7 @@
     </div>
   </div>
 
-  <div class="col-md-6">
+  <div class="col-md-6" >
     <div class="card" style="width: 18rem">
       <div class="card-body">
         <img [src]="productForm.controls.imageUrl.value" class="card-img-top">
@@ -125,6 +125,7 @@
         <p class="card-text">{{ productForm.controls.category.value }}</p>
         <p class="card-text">{{ productForm.controls.price.value | currency:'EUR' }}</p>
         <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+        <button class="btn btn-danger" (click)="deleteProduct(productId)">Delete</button>
       </div>
     </div>
   </div>

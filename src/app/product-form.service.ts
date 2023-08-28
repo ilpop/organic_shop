@@ -4,7 +4,8 @@ import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from './product.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFirestore,  DocumentData, DocumentReference } from '@angular/fire/compat/firestore';
+import { deleteDoc, doc } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class ProductFormService {
 
     private fb: FormBuilder, 
     private productService: ProductService,
-    private firestore: AngularFirestore) {
+    public firestore: AngularFirestore) {
     
       this.productForm = this.fb.group({
 
@@ -29,10 +30,23 @@ export class ProductFormService {
       category: ['', Validators.required],
       imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
     
+      
     });
+    
 
     this.categories$ = this.firestore.collection('/categories').valueChanges();
     console.log(this.categories$);
+  }
+
+  async deleteProduct(productId: string) {
+    try {
+      const productDocRef = this.firestore.doc('products');
+      await productDocRef.delete();
+      console.log('Product deleted successfully:', productId);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      throw error; // Rethrow the error to be caught in the component
+    }
   }
 
   getCategories(): Observable<any[]> {
@@ -65,6 +79,8 @@ export class ProductFormService {
     }
   }
 
+
+  
   initializeProductForm(product: any | null): void {
 
     this.productForm.setValue({
@@ -75,4 +91,5 @@ export class ProductFormService {
     });
   }
 
-}
+
+}  

@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./product-form.component.css']
 })
 export class ProductFormComponent implements OnInit{
+  products: any[];
   productForm: FormGroup;
   productId: string ;
   categories$: Observable<any[]>;
@@ -53,12 +54,25 @@ export class ProductFormComponent implements OnInit{
       }
     });
   }
-  
 
   save() {
     this.productFormService.saveProduct(this.productId);
     //this.router.navigate(['/admin/products']);
   }
+
+  async deleteProduct(productId: string) {
+    const confirmation = confirm('Are you sure you want to delete this product?');
+    if (confirmation) {
+      try {
+        await this.productService.deleteProduct(productId);
+        // Update the products list after deletion
+        this.products = await this.productService.getAll().toPromise();
+      } catch (error) {
+        console.error('Error deleting product:', error);
+      }
+    }
+  }
+  
 
 }
 
