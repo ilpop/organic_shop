@@ -60,7 +60,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
     FormsModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
@@ -76,7 +75,6 @@ import { ReactiveFormsModule } from '@angular/forms';
     AngularFireAuthGuard, 
     AuthService, 
     UserService, 
-    AngularFirestore,
     ProductService
   ],
   bootstrap: [AppComponent]

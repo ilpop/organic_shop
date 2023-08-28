@@ -38,17 +38,6 @@ export class ProductFormService {
     console.log(this.categories$);
   }
 
-  async deleteProduct(productId: string) {
-    try {
-      const productDocRef = this.firestore.doc('products');
-      await productDocRef.delete();
-      console.log('Product deleted successfully:', productId);
-    } catch (error) {
-      console.error('Error deleting product:', error);
-      throw error; // Rethrow the error to be caught in the component
-    }
-  }
-
   getCategories(): Observable<any[]> {
     return this.firestore.collection('/categories').valueChanges();
   }
@@ -59,7 +48,7 @@ export class ProductFormService {
         const productData = this.productForm.value;
         console.log('productId in save method:', this.productId);
         console.log('productId in save method:', productId); // Check if productId is obtained correctly
-        if (productId) {
+        if (productId && productId != 'new') {
           // If productId exists, it means we are updating an existing product
           await this.productService.updateProduct(productId, productData);
           this.successMessage$.next('Product updated successfully!');
@@ -78,7 +67,16 @@ export class ProductFormService {
       }
     }
   }
-
+  async deleteProduct(productId: string) {
+    try {
+      const productDocRef = this.firestore.doc('products');
+      await productDocRef.delete();
+      console.log('Product deleted successfully:', productId);
+    } catch (error) {
+      console.error('Error deleting product:', error);
+      throw error; // Rethrow the error to be caught in the component
+    }
+  }
 
   
   initializeProductForm(product: any | null): void {

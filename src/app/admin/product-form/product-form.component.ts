@@ -29,10 +29,10 @@ export class ProductFormComponent implements OnInit{
       
   }
   async ngOnInit() {
+    this.productFormService.initializeProductForm(null);
+    this.productForm = this.productFormService.productForm; // Initialize the form
     const categories = await this.productFormService.getCategories();
     this.categories$ = categories; // Update the categories list
-  
-    this.productForm = this.productFormService.productForm; // Initialize the form
   
     this.route.paramMap.subscribe(async params => {
       const productId = params.get('id');
@@ -57,7 +57,7 @@ export class ProductFormComponent implements OnInit{
 
   save() {
     this.productFormService.saveProduct(this.productId);
-    //this.router.navigate(['/admin/products']);
+    
   }
 
   async deleteProduct(productId: string) {
@@ -66,7 +66,9 @@ export class ProductFormComponent implements OnInit{
       try {
         await this.productService.deleteProduct(productId);
         // Update the products list after deletion
+        this.router.navigate(['/admin/products']);
         this.products = await this.productService.getAll().toPromise();
+    
       } catch (error) {
         console.error('Error deleting product:', error);
       }
