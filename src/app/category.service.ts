@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class CategoryService {
   constructor(private firestore: Firestore) { }
 
-  getCategories(): Observable<any[]> {
+  getAll(): Observable<any[]> {
     const categoriesCollection = collection(this.firestore, 'categories');
     return collectionData(categoriesCollection);
   }
