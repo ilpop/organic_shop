@@ -30,10 +30,12 @@ export class ProductFormComponent implements OnInit{
   }
   async ngOnInit() {
 
-    this.productForm = this.productFormService.productForm;
-    
     const categories = await this.productFormService.getCategories();
     this.categories$ = categories; // Update the categories list
+    this.productFormService.initializeProductForm(null);
+    this.productForm = this.productFormService.productForm;
+    
+
       
     this.route.paramMap.subscribe(async params => {
       const productId = params.get('id');
@@ -46,14 +48,13 @@ export class ProductFormComponent implements OnInit{
         console.log('Loaded product for editing:', product); // Check if product is loaded
        
         if (product) {
+          //this.productForm.setValue(this.productFormService.productForm.value);
           this.productFormService.initializeProductForm(product);
-          
-          this.productForm.setValue(this.productFormService.productForm.value);
           //this.productForm = this.productFormService.productForm;
         }
       } else {
         this.productFormService.initializeProductForm(null);
-        this.productForm = this.productFormService.productForm;
+        //this.productForm = this.productFormService.productForm;
       }
     });
   }

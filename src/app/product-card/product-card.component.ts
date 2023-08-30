@@ -1,15 +1,31 @@
+import { DocumentData } from '@angular/fire/compat/firestore';
 import { ProductFormComponent } from './../admin/product-form/product-form.component';
 import { Component, Input } from '@angular/core';
 import { Product } from '../models/product';
+import { ShoppingCartService } from '../shopping-cart.service';
 
 @Component({
   selector: 'product-card',
   templateUrl: './product-card.component.html',
-  styleUrls: ['./product-card.component.css']
+  styleUrls: ['./product-card.component.css'],
 })
 export class ProductCardComponent {
   @Input('product') product: Product;
-  //@Input('productForm.control') productForm: ProductFormComponent;
   @Input('show-actions') showActions = true;
 
+  constructor(private cartService: ShoppingCartService) {}
+
+  addToCart(product: Product) {
+    console.log('Add to cart clicked');
+    let cartId = localStorage.getItem('cartId');
+    if (!cartId) {
+      this.cartService.create().then(result => {
+        localStorage.setItem('cartId', result.key);
+        
+       // this.cartService.addToCart(product);
+      });
+    } else {
+
+    }
+  }
 }
