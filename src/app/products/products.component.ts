@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ProductService } from '../product.service';
-import { CategoryService } from '../category.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 
@@ -12,13 +11,13 @@ import { Product } from '../models/product';
 export class ProductsComponent {
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  categories$;
   category: string;
+  product: Product;
 
   constructor(
     route: ActivatedRoute,
     productService: ProductService, 
-    categoryService: CategoryService) { 
+    ) { 
 
     productService
     .getAll().subscribe(products => {
@@ -30,11 +29,9 @@ export class ProductsComponent {
         this.filteredProducts = (this.category) ?
         this.products.filter(p => p.category === this.category) :
         this.products;
-        console.log(this.category);
       });
     });
 
-    this.categories$ = categoryService.getAll();
 
   }
 }

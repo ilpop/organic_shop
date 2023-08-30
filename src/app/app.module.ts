@@ -36,6 +36,8 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideDatabase,getDatabase } from '@angular/fire/database';
 import { ProductService } from './product.service';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ProductFilterComponent } from './products/product-filter/product-filter.component';
+import { ProductCardComponent } from './product-card/product-card.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +56,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     RegisterComponent,
     ProtectedComponent,
     ProductFormComponent,
+    ProductFilterComponent,
+    ProductCardComponent,
    
   ],
   imports: [
