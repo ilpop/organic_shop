@@ -5,6 +5,7 @@ import { Product } from './models/product';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { ShoppingCart } from './models/shopping-cart';
+import { ShoppingCartItem } from './models/shopping-cart-item';
 
 @Injectable()
 export class ShoppingCartService {
@@ -21,7 +22,7 @@ export class ShoppingCartService {
   async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
     return this.firestore.object('/shopping-carts/' + cartId).valueChanges().pipe(
-      map((x: ShoppingCart) => new ShoppingCart(x.items))
+      map((x: any) => new ShoppingCart(x.items))
     );
   }
 
