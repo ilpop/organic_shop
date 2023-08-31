@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'shopping-cart',
@@ -6,5 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
+items: Product[];
+
+  constructor() { }
 
 }
