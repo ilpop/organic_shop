@@ -1,9 +1,11 @@
+import { ShoppingCart } from './../models/shopping-cart';
 import { ShoppingCartService } from './../shopping-cart.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ProductService } from '../product.service';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../models/product';
 import { Subscription } from 'rxjs';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 @Component({
   selector: 'app-products',
@@ -16,6 +18,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   category: string;
   product: Product;
   cart: any;
+  
   private subscription: Subscription;
 
   constructor(

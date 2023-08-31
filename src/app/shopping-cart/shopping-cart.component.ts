@@ -7,7 +7,7 @@ import { Product } from '../models/product';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-items: Product[];
+
 
   constructor() { }
 
