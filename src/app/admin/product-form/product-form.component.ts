@@ -1,12 +1,10 @@
-// product-form.component.ts
-
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductFormService } from 'src/app/product-form.service'
 import { ProductService } from 'src/app/product.service';
 import { Observable } from 'rxjs';
-import { Product } from 'src/app/models/product';
+
 
 @Component({
   selector: 'app-product-form',

@@ -1,8 +1,10 @@
+import { Observable } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth-service.service';
 import { User } from 'firebase/auth';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { ShoppingCart } from '../models/shopping-cart';
 
 
 @Component({
@@ -12,8 +14,7 @@ import { ShoppingCartService } from '../shopping-cart.service';
 })
 export class BsNavbarComponent implements OnInit{
   user$: User | undefined;
-  shoppingCartItemCount: number;
-
+  cart$: Observable<ShoppingCart>;
 
   constructor(private auth: AuthService, private shoppingCartService: ShoppingCartService) { 
 
@@ -23,17 +24,8 @@ async ngOnInit() {
   this.auth.user.subscribe(async (user) => {
     this.user$ = user;  });
 
-    let cart$ = await this.shoppingCartService.getCart()
-      cart$.subscribe((cart: any) => {
-      console.log(cart); // Add this line
-      this.shoppingCartItemCount = 0;
-    for(let productId in cart.items) {
-      console.log(`Product ID: ${productId}, Quantity: ${cart.items[productId].quantity}`);
-      this.shoppingCartItemCount += cart.items[productId].quantity;
-    
-    }
-
-  });
+    this.cart$ = await this.shoppingCartService.getCart();
+  
 }
 
   logout() {

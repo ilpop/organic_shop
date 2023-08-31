@@ -18,9 +18,11 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart() {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.firestore.object('/shopping-carts/' + cartId).valueChanges();
+    return this.firestore.object('/shopping-carts/' + cartId).valueChanges().pipe(
+      map((x: ShoppingCart) => new ShoppingCart(x.items))
+    );
   }
 
   private getItem(cartId: string, productId: string) {
