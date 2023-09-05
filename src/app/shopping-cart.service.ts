@@ -40,4 +40,16 @@ export class ShoppingCartService {
       else item$.set({ product: product, quantity: 1 });
     });
   }
+
+  async removeFromCart(product: Product) {
+    let cartId = await this.getOrCreateCartId();
+    let item$ = this.db.object('/shopping-carts/' + cartId + '/items/' + product.productId);
+    item$
+    .valueChanges()
+    .pipe(take(1))
+    .subscribe((item: any) => {
+      if(item) item$.update({ quantity: item.quantity - 1 });
+      else item$.set({ product: product, quantity: 1 });
+    });
+  } 
 }

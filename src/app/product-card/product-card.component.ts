@@ -17,12 +17,17 @@ export class ProductCardComponent {
 
   constructor(private cartService: ShoppingCartService) { }
 
-  addToCart(product: Product) {
-    this.cartService.addToCart(product);
+  addToCart() {
+    this.cartService.addToCart(this.product);
 
-    }
+  }
 
-    getQuantity() {
+  removeFromCart() {
+    this.cartService.removeFromCart(this.product);
+
+  }
+  
+  getQuantity() {
       if(!this.shoppingCart) return 0;
      let item = this.shoppingCart.items[this.product.productId];
      return item ? item.quantity: 0;
