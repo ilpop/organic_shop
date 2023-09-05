@@ -38,6 +38,7 @@ import { ProductService } from './product.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ProductFilterComponent } from './products/product-filter/product-filter.component';
 import { ProductCardComponent } from './product-card/product-card.component';
+import { ShoppingCartService } from './shopping-cart.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { ProductCardComponent } from './product-card/product-card.component';
     AngularFireAuthGuard, 
     AuthService, 
     UserService, 
-    ProductService
+    ProductService,
+    ShoppingCartService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,7 +7,8 @@ export const environment = {
     storageBucket: "oshop-ec4f0.appspot.com",
     messagingSenderId: "1034777579893",
     appId: "1:1034777579893:web:24d4420d428d4d3aacc33c",
-    measurementId: "G-3KTX79P5DF"
+    measurementId: "G-3KTX79P5DF",
+    databaseURL: "https://oshop-ec4f0-default-rtdb.europe-west1.firebasedatabase.app"
   }
 
   
