@@ -1,6 +1,4 @@
 import { ShoppingCartService } from './../shopping-cart.service';
-
-import { ProductFormComponent } from './../admin/product-form/product-form.component';
 import { Component, Input } from '@angular/core';
 import { Product } from '../models/product';
 
@@ -28,7 +26,7 @@ export class ProductCardComponent {
   }
   
   getQuantity() {
-      if(!this.shoppingCart) return 0;
+    if (!this.shoppingCart || !this.shoppingCart.items) return 0;
      let item = this.shoppingCart.items[this.product.productId];
      return item ? item.quantity: 0;
     }

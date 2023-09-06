@@ -1,27 +1,37 @@
-<div class ="page-header">
-    <h1>Shopping Cart</h1>
-    <ng-container *ngIf="cart$ as cart">
-        <p>
-            You have {{ shoppingCartItemCount }} items in your shopping cart.
-        </p>
-    
+<div class="page-header">
+  <h1>Shopping Cart</h1>
+  <ng-container *ngIf="cart$ as cart">
+    <p>You have {{ shoppingCartItemCount }} items in your shopping cart.</p>
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                </tr>
-            </thead>
-            <tbody >
-                    <tr *ngFor="let row of tableData">
-                        <td>{{ row.title }} </td>
-                        <td> {{ row.quantity }}</td>
-                        <td> {{ row.price }}</td>
-                    </tr>
-            </tbody>
-        </table>
-    </ng-container>    
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th></th>
+          <th>Quantity</th>
+          <th></th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="cart$ as cart">
+        <tr *ngFor="let row of tableData">
+          <td>{{ row.title }}</td>
+          <td>
+            <button (click)="removeFromCart(row.product)" class="btn btn-secondary">
+              -
+            </button>
+          </td>
+
+          <td>{{ row.quantity }}</td>
+          <td>
+            <button (click)="addToCart(row.product)" class="btn btn-secondary">
+              +
+            </button>
+          </td>
+          <td>{{ row.price }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <b>total: {{ shoppingCartTotalPrice.toFixed(2)}} €</b>
+  </ng-container>
 </div>
-
