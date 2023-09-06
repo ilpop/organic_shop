@@ -17,9 +17,11 @@ export class ShoppingCartService {
     });
   }
 
-  async getCart(): Promise<AngularFireObject<ShoppingCart>> {
+  async getCart(): Promise<Observable<ShoppingCart>> {
     let cartId = await this.getOrCreateCartId();
-    return this.db.object('/shopping-carts/' + cartId);
+    return this.db.object('/shopping-carts/' + cartId)
+    .valueChanges()
+    .pipe(map((data: any) => new ShoppingCart(data?.items)));
   }
 
   private async getOrCreateCartId() {
