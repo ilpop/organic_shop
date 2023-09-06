@@ -17,7 +17,10 @@
         <tr *ngFor="let row of tableData">
           <td>{{ row.title }}</td>
           <td>
-            <button (click)="removeFromCart(row.product)" class="btn btn-secondary">
+            <button
+              (click)="removeFromCart(row.product)"
+              class="btn btn-secondary"
+            >
               -
             </button>
           </td>
@@ -31,7 +34,15 @@
           <td>{{ row.price }}</td>
         </tr>
       </tbody>
+
+      <tfoot>
+        <tr>
+          <th>total: {{ shoppingCartTotalPrice.toFixed(2) }} €</th>
+        </tr>
+      </tfoot>
     </table>
-    <b>total: {{ shoppingCartTotalPrice.toFixed(2)}} €</b>
+    <button (click)="clearCart(cart)" class="btn btn-danger btn-sm">
+      Remove all
+    </button>
   </ng-container>
 </div>

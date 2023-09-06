@@ -15,10 +15,13 @@ export class ShoppingCartComponent implements OnInit {
   shoppingCartItemCount;
   shoppingCartTotalPrice: number = 0;
   tableData: any[] = []; 
+  cart;
 
   constructor(private shoppingCartService: ShoppingCartService) {}
 
+
   async ngOnInit() {
+
     this.cart$ = await this.shoppingCartService.getCart();
 
     this.cart$.subscribe((cart: any) => {
@@ -78,6 +81,17 @@ export class ShoppingCartComponent implements OnInit {
 
   removeFromCart(product: Product) {
     this.shoppingCartService.removeFromCart(product);
+    if(this.shoppingCartItemCount <= 1) {
+      this.clearCart();
+    }
+  
   } 
+
+  clearCart() {
+    this.shoppingCartService.clearCart();
+    this.tableData = [];
+    this.shoppingCartTotalPrice = 0;
+
+  }
   
 }
