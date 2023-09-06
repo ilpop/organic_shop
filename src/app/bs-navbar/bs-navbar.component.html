@@ -9,7 +9,8 @@
       data-bs-target="#navbarCollapse"
       aria-controls="navbarCollapse"
       aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle navigation"
+    >
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -17,15 +18,15 @@
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="/shopping-cart">
             Shopping-cart
-            <span class="badge rounded-pill text-bg-warning" >
+            <span class="badge rounded-pill text-bg-warning">
               {{ shoppingCartItemCount }}
             </span>
           </a>
-
         </li>
         <li class="nav-item">
           <a class="nav-link" aria-current="page" routerLink="/register">
-            Register</a>
+            Register</a
+          >
         </li>
         <ng-template #anonymousUser>
           <li class="nav-item">
@@ -38,17 +39,21 @@
             type="button"
             class="btn btn-primary"
             id="dropdownBasic1"
-            ngbDropdownToggle>
+            ngbDropdownToggle
+          >
             {{ user$.email }}
           </button>
           <div ngbDropdownMenu="dropdown-menu">
             <a class="dropdown-item" routerLink="/my/orders">My Orders</a>
             <a class="dropdown-item" routerLink="/admin/orders"
-              >Manage Ordres</a>
+              >Manage Ordres</a
+            >
             <a class="dropdown-item" routerLink="/admin/products"
-              >Manage Products</a>
+              >Manage Products</a
+            >
             <a class="dropdown-item" (click)="logout()" routerLink="/"
-              >Logout</a>
+              >Logout</a
+            >
           </div>
         </li>
       </ul>
@@ -57,7 +62,8 @@
           class="form-control me-2"
           type="search"
           placeholder="Search"
-          aria-label="Search"/>
+          aria-label="Search"
+        />
         <button class="btn btn-outline-success" type="submit">Search</button>
       </form>
     </div>

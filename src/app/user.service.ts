@@ -15,5 +15,4 @@ export class UserService {
     this.db.object('/users/' + user.uid).update({
       email: user.email
     });*/
-  
 }

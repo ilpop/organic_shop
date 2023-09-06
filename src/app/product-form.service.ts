@@ -1,14 +1,11 @@
-// product-form.service.ts
-
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from './product.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { AngularFirestore,  DocumentData, DocumentReference } from '@angular/fire/compat/firestore';
-import { deleteDoc, doc } from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/compat/firestore';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProductFormService {
   productForm: FormGroup;
@@ -16,23 +13,21 @@ export class ProductFormService {
   successMessage$ = new BehaviorSubject<string | null>(null);
   errorMessage$ = new BehaviorSubject<string | null>(null);
   productId;
-  
+
   constructor(
-
-    private fb: FormBuilder, 
+    private fb: FormBuilder,
     private productService: ProductService,
-    public firestore: AngularFirestore) {
-    
-      this.productForm = this.fb.group({
-
+    public firestore: AngularFirestore
+  ) {
+    this.productForm = this.fb.group({
       title: ['', Validators.required],
       price: ['', [Validators.required, Validators.min(0)]],
       category: ['', Validators.required],
-      imageUrl: ['', [Validators.required, Validators.pattern(/^https?:\/\/.*$/)]]
-    
-      
+      imageUrl: [
+        '',
+        [Validators.required, Validators.pattern(/^https?:\/\/.*$/)],
+      ],
     });
-    
 
     this.categories$ = this.firestore.collection('/categories').valueChanges();
     console.log(this.categories$);
@@ -57,7 +52,7 @@ export class ProductFormService {
           await this.productService.saveProduct(productData);
           this.successMessage$.next('Product saved successfully!');
         }
-  
+
         this.productForm.reset();
         setTimeout(() => {
           this.successMessage$.next(null); // Reset the success message after a delay
@@ -78,16 +73,12 @@ export class ProductFormService {
     }
   }
 
-  
   initializeProductForm(product: any | null): void {
-
     this.productForm.setValue({
       title: product ? product.title : '',
       price: product ? product.price : '',
       category: product ? product.category : '',
-      imageUrl: product ? product.imageUrl : ''
+      imageUrl: product ? product.imageUrl : '',
     });
   }
-
-
-}  
+}

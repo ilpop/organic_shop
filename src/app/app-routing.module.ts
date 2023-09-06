@@ -1,7 +1,6 @@
-import { Product } from 'src/app/models/product';
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './check-out/check-out.component';
@@ -34,7 +33,6 @@ const routes: Routes = [
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AuthGuard] },
 
   { path: 'protected', component: ProtectedComponent, canActivate: [AngularFireAuthGuard] },
-  
   
 ];
 

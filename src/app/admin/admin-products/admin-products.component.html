@@ -1,33 +1,37 @@
 <div class="page-header">
-    <h1>Admin Products</h1>
-<p>
+  <h1>Admin Products</h1>
+  <p>
     <a routerLink="/admin/products/new" class="btn btn-primary">New product</a>
-</p>
-<p>
-    <input #query (keyup)="filter(query.value)" 
-    type="text" 
-    class="form-control" 
-    placeholder="Search..." />
-</p>
+  </p>
+  <p>
+    <input
+      #query
+      (keyup)="filter(query.value)"
+      type="text"
+      class="form-control"
+      placeholder="Search..."
+    />
+  </p>
 
-<table class="table" >
+  <table class="table">
     <thead>
-        <tr>
-            <th>Image</th>
-            <th>Title</th>
-            <th>Price</th>
-            <th>key</th>
-        </tr>
+      <tr>
+        <th>Image</th>
+        <th>Title</th>
+        <th>Price</th>
+        <th>key</th>
+      </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let p of filteredProducts">
-            <td><img [src]="p.imageUrl" alt="Product Image" width="50"></td>
-            <td>{{ p.title }}</td>
-            <td>{{ p.price}}</td>
-            <td>{{ p.productId }}</td>
-            <td>
-                <a routerLink="{{ p.productId }}">Edit </a>  
-            </td>
-        </tr>
+      <tr *ngFor="let p of filteredProducts">
+        <td><img [src]="p.imageUrl" alt="Product Image" width="50" /></td>
+        <td>{{ p.title }}</td>
+        <td>{{ p.price }}</td>
+        <td>{{ p.productId }}</td>
+        <td>
+          <a routerLink="{{ p.productId }}">Edit </a>
+        </td>
+      </tr>
     </tbody>
-</table>
+  </table>
+</div>

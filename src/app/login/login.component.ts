@@ -23,7 +23,7 @@ export class LoginComponent {
       // Error handling is done in the AuthService, no need for extra handling here
     }
 }
-
+    //todo: admin login
     // Auth logic to run auth providers
 
 }

@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ActivatedRoute, Router } from '@angular/router';
-import { of } from 'rxjs';
 import { ProductFormComponent } from './product-form.component';
 import { ProductFormService } from 'src/app/product-form.service';
 import { ProductService } from 'src/app/product.service';
@@ -20,8 +19,8 @@ describe('ProductFormComponent', () => {
         { provide: Router, useValue: router },
         { provide: ActivatedRoute, useValue: activatedRoute },
         { provide: ProductService, useValue: productService },
-        { provide: ProductFormService, useValue: productFormService }
-      ]
+        { provide: ProductFormService, useValue: productFormService },
+      ],
     }).compileComponents();
   });
 
@@ -59,7 +58,9 @@ describe('ProductFormComponent', () => {
   it('should save a product', async () => {
     spyOn(productFormService, 'saveProduct');
     component.save();
-    expect(productFormService.saveProduct).toHaveBeenCalledWith(component.productId);
+    expect(productFormService.saveProduct).toHaveBeenCalledWith(
+      component.productId
+    );
   });
 
   it('should delete a product', async () => {
@@ -68,7 +69,9 @@ describe('ProductFormComponent', () => {
     spyOn(productService, 'deleteProduct').and.returnValue(Promise.resolve());
     spyOn(router, 'navigate');
     component.deleteProduct(productId);
-    expect(window.confirm).toHaveBeenCalledWith('Are you sure you want to delete this product?');
+    expect(window.confirm).toHaveBeenCalledWith(
+      'Are you sure you want to delete this product?'
+    );
     expect(productService.deleteProduct).toHaveBeenCalledWith(productId);
     expect(router.navigate).toHaveBeenCalledWith(['/admin/products']);
   });
@@ -85,8 +88,8 @@ class ActivatedRouteStub {
     paramMap: {
       get: (param: string) => {
         return null;
-      }
-    }
+      },
+    },
   };
 }
 
@@ -105,4 +108,3 @@ class ProductFormServiceStub {
     return Promise.resolve();
   }
 }
-
