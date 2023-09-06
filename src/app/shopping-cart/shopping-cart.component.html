@@ -1,21 +1,25 @@
 <div class="page-header">
   <h1>Shopping Cart</h1>
-  <ng-container *ngIf="cart$ as cart">
+  <div class="row col-10" *ngIf="cart$ as cart">
     <p>You have {{ shoppingCartItemCount }} items in your shopping cart.</p>
 
     <table class="table">
       <thead>
         <tr>
+          <th></th>
           <th>Product</th>
           <th></th>
-          <th>Quantity</th>
+          <th class="text-center">Quantity</th>
           <th></th>
+
           <th>Price</th>
         </tr>
       </thead>
       <tbody *ngIf="cart$ as cart">
         <tr *ngFor="let row of tableData">
+          <td><img [src]="row.product.imageUrl" class="thumbnail" alt="" /></td>
           <td>{{ row.title }}</td>
+
           <td>
             <button
               (click)="removeFromCart(row.product)"
@@ -25,7 +29,7 @@
             </button>
           </td>
 
-          <td>{{ row.quantity }}</td>
+          <td class="text-center">{{ row.quantity }}</td>
           <td>
             <button (click)="addToCart(row.product)" class="btn btn-secondary">
               +
@@ -34,9 +38,9 @@
           <td>{{ row.price }}</td>
         </tr>
       </tbody>
-
       <tfoot>
         <tr>
+          <th></th>
           <th>total: {{ shoppingCartTotalPrice.toFixed(2) }} €</th>
         </tr>
       </tfoot>
@@ -44,5 +48,5 @@
     <button (click)="clearCart(cart)" class="btn btn-danger btn-sm">
       Remove all
     </button>
-  </ng-container>
+  </div>
 </div>

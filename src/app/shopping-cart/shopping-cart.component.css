@@ -1,3 +1,9 @@
 .page-header {
-    margin-top: 30px;
+    margin-top: 60px;
+}
+
+.thumbnail {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%
 }
