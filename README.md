@@ -1,27 +1,69 @@
-# Oshop
+# Organic E-commerce Shop
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8.
+Welcome to my Organic E-commerce Shop project! This project is a practice project and portfolio piece developed using Angular, TypeScript, and Firebase. It's a work in progress, and while it's functional in its current state, there are plans to enhance and expand its features.
 
-## Development server
+## Features
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- User authentication:
+  - Users can sign up with an email and generate a password.
+  - All users currently have admin rights (to be updated).
+- Product Management:
+  - Users can add, update, and delete products.
+- Shopping Cart:
+  - Users can add products to their shopping cart.
+  - Users can remove products from the shopping cart.
 
-## Code scaffolding
+## Upcoming Features
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+I have plans to improve and extend the project with the following features:
 
-## Build
+- Different User Rights:
+  - Implement various user roles, such as admin and regular user.
+- Additional Login Methods:
+  - Integrate social login options like Google and Facebook.
+- Checkout and Order Management:
+  - Implement a checkout process for users to place orders.
+  - Create a page for users and admins to manage orders.
+- Testing:
+  - Implement unit and integration tests to ensure the application's reliability.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+## Getting Started
 
-## Running unit tests
+To get started with this project, follow these steps:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository to your local machine (at the moment the soppingCart branch is HEAD):
 
-## Running end-to-end tests
+   git clone https://github.com/ilpop/organic_shop/tree/shoppingCart
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Install the required dependencies:
 
-## Further help
+cd organic-e-commerce-shop
+npm install
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Set up Firebase:
+
+    Create a Firebase project and set up Firebase Authentication and Firestore as needed.
+    Configure your Firebase credentials in the project.
+
+Start the development server:
+
+    ng serve
+
+    Open your browser and navigate to http://localhost:4200/ to access the application.
+
+Hosting
+
+This project is also hosted on Firebase Hosting and can be accessed at the following URL: https://oshop-ec4f0.web.app.
+Contributing
+
+Contributions to this project are welcome! Feel free to fork the repository, make improvements, and submit pull requests. Please adhere to the project's coding standards and guidelines.
+License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+Contact
+
+If you have any questions or suggestions, feel free to reach out:
+
+    Your Name
+    Email: ilkka.ihalainen@tuni.fi
+    GitHub: https://github.com/ilpop
