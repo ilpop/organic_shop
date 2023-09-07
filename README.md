@@ -33,12 +33,16 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine (at the moment the soppingCart branch is HEAD):
 
+```bash
    git clone https://github.com/ilpop/organic_shop/tree/shoppingCart
+```
 
 Install the required dependencies:
 
+```bash
 cd organic-e-commerce-shop
 npm install
+```
 
 Set up Firebase:
 
@@ -47,7 +51,9 @@ Set up Firebase:
 
 Start the development server:
 
+```bash
     ng serve
+```
 
     Open your browser and navigate to http://localhost:4200/ to access the application.
 
