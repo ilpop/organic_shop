@@ -41,6 +41,8 @@ Install the required dependencies:
 
 ```bash
 cd organic-e-commerce-shop
+```
+```bash
 npm install
 ```
 
@@ -70,6 +72,6 @@ Contact
 
 If you have any questions or suggestions, feel free to reach out:
 
-    Your Name
+    Ilkka Ihalainen
     Email: ilkka.ihalainen@tuni.fi
     GitHub: https://github.com/ilpop
