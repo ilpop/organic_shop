@@ -59,7 +59,7 @@ Start the development server:
 
     Open your browser and navigate to http://localhost:4200/ to access the application.
 
-Hosting
+## Hosting
 
 This project is also hosted on Firebase Hosting and can be accessed at the following URL: https://oshop-ec4f0.web.app.
 Contributing
