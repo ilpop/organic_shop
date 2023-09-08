@@ -1,0 +1,21 @@
+@import "~bootstrap/dist/css/bootstrap.css";
+@import "~font-awesome/css/font-awesome.css";
+
+.navbar {
+  margin-top: 5px;
+}
+
+.button-container {
+  display: flex;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+.button-container-reg {
+  display: flex;
+  margin-left: 10px;
+}
+
+.button-container li {
+  margin-left: 10px;
+}

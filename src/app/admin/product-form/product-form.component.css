@@ -1,0 +1,24 @@
+.page-header {
+    margin-top: 50px;
+}
+
+.btn-primary {
+    margin-top: 10px;
+}
+
+.fixed-width {
+    display: inline-block;
+    width: 120px;
+}
+
+.currency-input {
+    text-align: right;
+    padding-right: 30px; /* Adjust to leave space for the dot and decimals */
+}
+
+.input-group {
+    position: relative;
+    margin-top: 20px;
+    border-collapse: separate;
+
+}

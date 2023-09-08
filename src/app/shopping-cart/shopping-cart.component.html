@@ -1,0 +1,55 @@
+<div class="page-header">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow&display=swap" rel="stylesheet">
+  <h1>Shopping Cart</h1>
+  <div class="row col-10" *ngIf="cart$ as cart">
+    <p>You have {{ shoppingCartItemCount }} items in your shopping cart.</p>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Product</th>
+          <th></th>
+          <th class="text-center">Quantity</th>
+          <th></th>
+
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody *ngIf="cart$ as cart">
+        <tr *ngFor="let row of tableData">
+          <td><img [src]="row.product.imageUrl" class="thumbnail" alt="" /></td>
+          <td>{{ row.title }}</td>
+
+          <td>
+            <button
+              (click)="removeFromCart(row.product)"
+              class="btn btn-secondary"
+            >
+              -
+            </button>
+          </td>
+
+          <td class="text-center">{{ row.quantity }}</td>
+          <td>
+            <button (click)="addToCart(row.product)" class="btn btn-secondary">
+              +
+            </button>
+          </td>
+          <td>{{ row.price }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <th></th>
+          <th>total: {{ shoppingCartTotalPrice.toFixed(2) }} €</th>
+        </tr>
+      </tfoot>
+    </table>
+    <button (click)="clearCart(cart)" class="btn btn-danger btn-sm">
+      Remove all
+    </button>
+  </div>
+</div>

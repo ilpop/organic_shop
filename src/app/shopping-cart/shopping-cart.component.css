@@ -1,0 +1,17 @@
+.page-header {
+    margin-top: 60px;
+}
+
+.thumbnail {
+    height: 80px;
+    width: 80px;
+    border-radius: 100%
+}
+
+h1 {
+    font-family: 'Barlow', sans-serif;
+    background-color: #EBE7E4;
+    color: #1E2D0D;
+    padding: 10px;
+
+  }
