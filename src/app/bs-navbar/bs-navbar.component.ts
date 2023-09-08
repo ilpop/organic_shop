@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth-service.service';
 import { User } from 'firebase/auth';
 import { ShoppingCartService } from '../shopping-cart.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: ' bs-navbar',
@@ -29,6 +30,7 @@ export class BsNavbarComponent implements OnInit {
       }
     });
   }
+
   logout() {
     this.auth.logout();
   }
