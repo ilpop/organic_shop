@@ -8,11 +8,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class AuthService {
 
-  constructor(private auth: AngularFireAuth, private route: ActivatedRoute, private snackBar: MatSnackBar) {}
+  constructor(private afAuth: AngularFireAuth, private route: ActivatedRoute, private snackBar: MatSnackBar) {}
 
   async register(email: string, password: string) {
     try {
-      await this.auth.createUserWithEmailAndPassword(email, password);
+      await this.afAuth.createUserWithEmailAndPassword(email, password);
       this.showSnackBar('Registration successful');
     } catch (error) {
       console.error('Error during registration:', error);
@@ -25,7 +25,7 @@ export class AuthService {
       let returnUrl = this.route.snapshot.queryParams.returnUrl || '/';
       localStorage.setItem('returnUrl', returnUrl);
       
-      await this.auth.signInWithEmailAndPassword(email, password);
+      await this.afAuth.signInWithEmailAndPassword(email, password);
       this.showSnackBar('Login successful');
     } catch (error) {
       console.error('Error during login:', error);
@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   async logout() {
-    await this.auth.signOut();
+    await this.afAuth.signOut();
     this.showSnackBar('Logout successful');
   }
 
@@ -46,7 +46,8 @@ export class AuthService {
   }
 
   get user() {
-    return this.auth.user;
+    return this.afAuth.user;
   }
-}
+
+}  
 

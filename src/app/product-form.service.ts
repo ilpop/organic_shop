@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProductService } from './product.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AuthService } from './auth-service.service';
 
 @Injectable({
   providedIn: 'root',
@@ -13,6 +14,7 @@ export class ProductFormService {
   successMessage$ = new BehaviorSubject<string | null>(null);
   errorMessage$ = new BehaviorSubject<string | null>(null);
   productId;
+  private authService: AuthService;
 
   constructor(
     private fb: FormBuilder,
@@ -36,13 +38,14 @@ export class ProductFormService {
   getCategories(): Observable<any[]> {
     return this.firestore.collection('/categories').valueChanges();
   }
-
   async saveProduct(productId: string | null) {
-    if (this.productForm.valid) {
-      try {
+    try {
+
+        if (this.productForm.valid) {
         const productData = this.productForm.value;
         console.log('productId in save method:', this.productId);
-        console.log('productId in save method:', productId); // Check if productId is obtained correctly
+        console.log('productId in save method:', productId);
+  
         if (productId && productId != 'new') {
           // If productId exists, it means we are updating an existing product
           await this.productService.updateProduct(productId, productData);
@@ -52,16 +55,21 @@ export class ProductFormService {
           await this.productService.saveProduct(productData);
           this.successMessage$.next('Product saved successfully!');
         }
-
+  
         this.productForm.reset();
         setTimeout(() => {
           this.successMessage$.next(null); // Reset the success message after a delay
         }, 2000);
-      } catch (error) {
-        this.errorMessage$.next('Error saving product. Please try again.');
       }
+    } catch (error) {
+      console.error(error); // Log the error for debugging
+      this.errorMessage$.next('Only Admins can save new products.');
     }
   }
+  
+  
+
+
   async deleteProduct(productId: string) {
     try {
       const productDocRef = this.firestore.doc('products');
