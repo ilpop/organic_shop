@@ -6,9 +6,8 @@ Welcome to my Organic E-commerce Shop project! This project is a practice projec
 
 - User authentication:
   - Users can sign up with an email and generate a password.
-  - All users currently have admin rights (to be updated).
 - Product Management:
-  - Users can add, update, and delete products.
+  - Admin user can add, update, and delete products.
 - Shopping Cart:
   - Users can add products to their shopping cart.
   - Users can remove products from the shopping cart.
