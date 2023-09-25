@@ -30,10 +30,10 @@ I have plans to improve and extend the project with the following features:
 
 To get started with this project, follow these steps:
 
-1. Clone the repository to your local machine (at the moment the soppingCart branch is HEAD):
+1. Clone the repository to your local machine:
 
 ```bash
-   git clone https://github.com/ilpop/organic_shop/tree/shoppingCart
+   git clone https://github.com/ilpop/organic_shop/
 ```
 
 Install the required dependencies:
@@ -63,10 +63,6 @@ Start the development server:
 This project is also hosted on Firebase Hosting and can be accessed at the following URL: https://oshop-ec4f0.web.app.
 Contributing
 
-Contributions to this project are welcome! Feel free to fork the repository, make improvements, and submit pull requests. Please adhere to the project's coding standards and guidelines.
-License
-
-This project is licensed under the MIT License. See the LICENSE file for details.
 Contact
 
 If you have any questions or suggestions, feel free to reach out:
