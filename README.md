@@ -6,8 +6,8 @@ Welcome to my Organic E-commerce Shop project! This project is a practical work 
 
 - User authentication:
   - Users can sign up with an email and generate a password.
-  - For the demo user can also login with email user@gmail.com and password [userUser].
-  - For demonstration purposes all the users can edit and create prooducts, but changes won't be saved in the database.
+  - For the demo, user can also login with email user@gmail.com and password [userUser].
+  - For demo purposes all the users can edit, delete and create products but the changes won't be saved in the database.
 - Product Management:
   - Admin user can add, update, and delete products from the Firebase database.
   - Products have title, price, category and image URL.
@@ -31,11 +31,13 @@ I have plans to improve and extend the project with the following features:
   - Create a page for users and admins to manage orders.
 - Testing:
   - Implement unit and integration tests to ensure the application's reliability.
+-Search
+  -Searching products by their name.
  
 
 ## Hosting
 
-This project is also hosted on Firebase Hosting and can be accessed at the following URL: https://oshop-ec4f0.web.app.
+This project is  hosted on Firebase Hosting and can be accessed at the following URL: https://oshop-ec4f0.web.app.
 
 
 ## Getting Started
@@ -44,16 +46,16 @@ To get started with this project, follow these steps:
 
 1. Clone the repository to your local machine:
 
-```bash
+```
    git clone https://github.com/ilpop/organic_shop.git
 ```
 
 Install the required dependencies:
 
-```bash
+```
 cd organic-e-commerce-shop
 ```
-```bash
+```
 npm install
 ```
 
@@ -64,7 +66,7 @@ Set up Firebase:
 
 Start the development server:
 
-```bash
+```
     ng serve
 ```
 
